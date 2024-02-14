@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,6 +26,7 @@ const LoginForm = () => {
 
       if (response.ok) {
         console.log('Login successful');
+        navigate('/')
         localStorage.setItem('authToken', data.token);
         setUsername('');
         setPassword('');
@@ -39,7 +43,8 @@ const LoginForm = () => {
     }
   };
 
-  const handleHelpClick = () => {
+  const handleHelpClick = (e) => {
+    e.preventDefault()
     Swal.fire(`User Name: kminchelle
               Password: 0lelplR`);
   };
