@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Watch = () => {
+const Shoes = () => {
   return (
     <div>
-      watch
+      shoes
     </div>
   )
 }
 
-export default Watch
+export default Shoes
