@@ -24,7 +24,7 @@ const Card = ({ product }) => {
                 padding: '4px',
                 fontSize: '14px',
                 fontWeight: 'bold',
-                color: '#000',
+                color: '#222B38',
                 borderRadius:'10px'
             }
         });
