@@ -1,102 +1,49 @@
 import React, { useEffect, useState } from 'react';
-import { Oval } from 'react-loader-spinner';
 import SearchBar from '../Component/SearchBar';
-import ShirtProductCard from '../Component/ShirtProductCard';
-import MobileProductCard from '../Component/MobileProductCard';
+import Card from '../Component/Card';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
-  const [mobile, setMobile] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [activeCategory, setActiveCategory] = useState('mens-shirts');
 
   useEffect(() => {
-    fetch('https://dummyjson.com/products/category/smartphones')
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        setMobile(data.mobile);
-        setFilteredProducts(data.mobile); // Initialize filteredProducts with all products
-        setIsLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-        setIsLoading(false);
-      });
-
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-    return () => clearTimeout(timer);
+    fetchProducts(activeCategory);
   }, []);
-  useEffect(() => {
-    fetch('https://dummyjson.com/products/category/mens-shirts')
+
+  const fetchProducts = (category) => {
+    fetch(`https://dummyjson.com/products/category/${category}`)
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         setProducts(data.products);
-        setFilteredProducts(data.products); // Initialize filteredProducts with all products
-        setIsLoading(false);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
-        setIsLoading(false);
       });
+  };
 
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  // Filter products based on category
-  const filterProducts = (category) => {
-    if (category === 'Shirts') {
-      setFilteredProducts(products.filter(product => product.category === 'Shirts'));
-    } else {
-      setFilteredProducts([]);
-    }
+  const handleCategoryChange = (newCategory) => {
+    setActiveCategory(newCategory);
+    fetchProducts(newCategory);
   };
 
   return (
-    <div>
-      {isLoading ? (
-        <div className='flex justify-center mt-10 md:mt-28'>
-          <Oval
-            visible={true}
-            height="50"
-            width="50"
-            color='#000'
-          />
-        </div>
-      ) : (
-        <div className='mt-28'>
-          <div className='flex justify-center'>
-            <SearchBar />
-          </div>
-          <div className='mt-4'>
-            <ul className='flex justify-center'>
-              <li className="mx-2 px-4 py-1 bg-gray-300 font-semibold rounded text-md cursor-pointer" onClick={() => filterProducts('Shirts')}>Shirts</li>
-              <li className="mx-2 px-4 py-1 bg-gray-300 font-semibold rounded text-md cursor-pointer" onClick={() => filterProducts('Mobile')}>Mobile</li>
-              <li className="mx-2 px-4 py-1 bg-gray-300 font-semibold rounded text-md cursor-pointer" onClick={() => filterProducts('Sunglass')}>Sunglass</li>
-              <li className="mx-2 px-4 py-1 bg-gray-300 font-semibold rounded text-md cursor-pointer" onClick={() => filterProducts('Shoes')}>Shoes</li>
-            </ul>
-          </div>
-
-          <div>
-            {filteredProducts.length > 0 ? (
-              <div>
-                {filteredProducts.map((product, index) => (
-                  <>
-                    <ShirtProductCard key={index} product={product} />
-                    <MobileProductCard />
-                  </>
-                ))}
-              </div>
-            ) : 'No products'}
-          </div>
-        </div>
-      )}
+    <div className='mt-28'>
+      <div className='flex justify-center'>
+        <SearchBar />
+      </div>
+      <div className='mt-4'>
+        <ul className='flex justify-center'>
+          <li onClick={() => handleCategoryChange('mens-shirts')} className={`mx-2 px-4 py-1 bg-gray-300 font-semibold rounded text-md cursor-pointer ${activeCategory === 'mens-shirts' ? 'bg-slate-800 text-white' : ''}`} >Shirts</li>
+          <li onClick={() => handleCategoryChange('smartphones')} className={`mx-2 px-4 py-1 bg-gray-300 font-semibold rounded text-md cursor-pointer ${activeCategory === 'smartphones' ? 'bg-slate-800 text-white' : ''}`} >Mobile</li>
+          <li onClick={() => handleCategoryChange('sunglasses')} className={`mx-2 px-4 py-1 bg-gray-300 font-semibold rounded text-md cursor-pointer ${activeCategory === 'sunglasses' ? 'bg-slate-800 text-white' : ''}`} >Sunglass</li>
+          <li onClick={() => handleCategoryChange('mens-shoes')} className={`mx-2 px-4 py-1 bg-gray-300 font-semibold rounded text-md cursor-pointer ${activeCategory === 'mens-shoes' ? 'bg-slate-800 text-white' : ''}`} >Shoes</li>
+        </ul>
+      </div>
+      <div className="grid md:grid-cols-3 gap-4">
+        {products.map(product => (
+          <Card key={product.id} product={product} />
+        ))}
+      </div>
     </div>
   );
 };
