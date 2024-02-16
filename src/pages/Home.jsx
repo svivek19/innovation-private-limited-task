@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import SearchBar from '../Component/SearchBar';
 import Card from '../Component/Card';
-
+import { ColorRing, Oval } from 'react-loader-spinner';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [priceFilter, setPriceFilter] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchProducts(activeCategory);
   }, []);
 
   const fetchProducts = (category) => {
+    setLoading(true);
+
     let urls = [];
 
     if (category === 'all') {
@@ -35,6 +38,9 @@ const Home = () => {
       })
       .catch(error => {
         console.error('Error fetching data:', error);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -85,16 +91,26 @@ const Home = () => {
         </select>
       </div>
 
-      <div className="grid md:grid-cols-3 mt-5 md:mt-10 gap-4">
-        {filteredProducts.length === 0 ? (
-          <p className=" text-center md:text-end text-gray-600 font-semibold text-2xl mt-10">No Products Found</p>
-        ) : (
-          filteredProducts.map(product => (
-            <Card key={product.id} product={product} />
-          ))
-        )}
-      </div>
-      <i className="bi bi-heart"></i> 
+      {loading ? (
+        <div className="flex justify-center mt-5 font-semibold text-gray-600 text-2xl">
+          <Oval
+            visible={true}
+            height="60"
+            width="60"
+            color='#000'
+          />
+        </div>
+      ) : (
+        <div className="grid md:grid-cols-3 mt-5 md:mt-10 gap-4">
+          {filteredProducts.length === 0 ? (
+            <p className="text-center md:text-end text-gray-600 font-semibold text-2xl mt-10">No Products Found</p>
+          ) : (
+            filteredProducts.map(product => (
+              <Card key={product.id} product={product} />
+            ))
+          )}
+        </div>
+      )}
     </div>
   );
 };
