@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import SearchBar from '../Component/SearchBar';
 import Card from '../Component/Card';
 
+
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [activeCategory, setActiveCategory] = useState('mens-shirts');
@@ -17,9 +18,9 @@ const Home = () => {
 
     if (category === 'all') {
       urls = [
-        'https://dummyjson.com/products/category/mens-shirts',
+        'https://dummyjson.com/products/category/sunglasses',
         'https://dummyjson.com/products/category/mens-shoes',
-        'https://dummyjson.com/products/category/sunglasses'
+        'https://dummyjson.com/products/category/mens-shirts'
       ];
     } else {
       urls = [`https://dummyjson.com/products/category/${category}`];
@@ -29,7 +30,6 @@ const Home = () => {
       fetch(url).then(res => res.json())
     ))
       .then(dataArray => {
-        // Concatenate products from all categories if category is 'all'
         const allProducts = category === 'all' ? dataArray.flatMap(data => data.products) : dataArray[0].products;
         setProducts(allProducts);
       })
@@ -87,13 +87,14 @@ const Home = () => {
 
       <div className="grid md:grid-cols-3 mt-5 md:mt-10 gap-4">
         {filteredProducts.length === 0 ? (
-          <p className="text-center text-gray-600 mt-10">No products found</p>
+          <p className=" text-center md:text-end text-gray-600 font-semibold text-2xl mt-10">No Products Found</p>
         ) : (
           filteredProducts.map(product => (
             <Card key={product.id} product={product} />
           ))
         )}
       </div>
+      <i className="bi bi-heart"></i> 
     </div>
   );
 };
