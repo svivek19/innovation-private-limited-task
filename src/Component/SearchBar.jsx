@@ -1,16 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const SearchBar = () => {
+const SearchBar = ({ onSearch }) => {
+    const [query, setQuery] = useState('');
+    const [isFocused, setIsFocused] = useState(false);
+
+    const handleChange = (event) => {
+        setQuery(event.target.value);
+        onSearch(event.target.value);
+    };
+
+    const handleClear = () => {
+        setQuery('');
+        onSearch('');
+    };
+
     return (
         <div>
             <div className="relative mx-auto text-gray-600">
                 <input
-                    className="border-2 border-gray-300 shadow-md bg-white w-96 py-3 rounded-lg font-semibold focus:outline-none pl-4"
+                    className="border-2 border-gray-300 shadow-md bg-white w-80 md:w-96 py-3 pr-10 rounded-lg font-semibold focus:outline-none pl-4"
                     placeholder="Search Items"
+                    type="search"
+                    value={query}
+                    onChange={handleChange}
+                    onFocus={() => setIsFocused(true)}
+                    onBlur={() => setIsFocused(false)}
                 />
+                {isFocused && query && (
+                    <button
+                        className="absolute top-0 right-0 mt-3 mr-4"
+                        onClick={handleClear}
+                    >
+                    </button>
+                )}
                 <div className="absolute right-0 top-0 mt-5 mr-4">
                     <svg
-                        className="text-gray-600 h-5 w-5 items-center fill-current"
+                        className="text-gray-600 h-5 w-5 fill-current"
                         xmlns="http://www.w3.org/2000/svg"
                         xmlnsXlink="http://www.w3.org/1999/xlink"
                         version="1.1"
