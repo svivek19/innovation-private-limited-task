@@ -1,22 +1,27 @@
 import React from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import Home from './pages/Home'
+import { Provider } from 'react-redux';
+import store from './store'; 
+import Home from './pages/Home';
 import Login from './pages/Login';
-import Navbar from './Component/Navbar'
+import Navbar from './Component/Navbar';
+import Cart from './pages/Cart';
 
 const App = () => {
-  
   return (
-    <div>
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path='/login' element={<Login />} />
-          <Route path='/' element={<Home />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
-  )
-}
+    <Provider store={store}>
+      <div>
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route path='/login' element={<Login />} />
+            <Route path='/' element={<Home />} />
+            <Route path='/cartdetails' element={<Cart />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </Provider>
+  );
+};
 
-export default App
+export default App;

@@ -5,7 +5,7 @@ import Card from '../Component/Card';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
-  const [activeCategory, setActiveCategory] = useState('mens-shirts');
+  const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [priceFilter, setPriceFilter] = useState("");
 
