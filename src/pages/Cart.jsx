@@ -85,7 +85,7 @@ const Cart = () => {
             </div>
           ))
         ) : (
-          <div className="mt-5 w-96 mx-auto hidden md:block">
+          <div className="mt-5 w-96 mx-auto">
             <img src='https://www.getillustrations.com/packs/matilda-startup-illustrations/scenes/_1x/shopping,%20e-commerce%20_%20empty,%20shopping%20cart,%20items,%20products,%20zero,%20none_md.png' alt="emptyCart" />
           </div>
         )}
