@@ -52,7 +52,7 @@ const Card = ({ product }) => {
                         </p>
                         <div className="flex items-center">
                             {Array.from({ length: Math.max(0, Math.round(product.rating)) }).map((_, index) => (
-                                <StarIcon/>
+                                <StarIcon key={index}/>
                             ))}
                             <span className="mr-2 ml-3 rounded bg-yellow-200 px-2.5 py-0.5 text-xs font-semibold">{product.rating.toFixed(1)}</span>
                         </div>

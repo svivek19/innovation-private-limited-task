@@ -29,7 +29,7 @@ const Navbar = () => {
           <h1 className='font-bold text-white text-2xl'>Shopify</h1>
         </Link>
         <div className="flex items-center">
-          <Link to={'/cartdetails'} className="flex text-lg font-bold px-5 md:px-10 text-white">
+          <Link to={'/shoppingcart'} className="flex text-lg font-bold px-5 md:px-10 text-white">
             <CartIcon/> {`(${cartItems.length})`}
           </Link>
           <div className="cursor-pointer text-4xl" onClick={handleLogout}>

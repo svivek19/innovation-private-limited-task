@@ -1,8 +1,9 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { addToCart, increaseQuantity, decreaseQuantity, removeFromCart } from '../actions/cartActions';
+import { addToCart, increaseQuantity, decreaseQuantity, removeFromCart, setCheckoutProduct } from '../actions/cartActions';
 
 const initialState = {
   items: [],
+  checkoutProduct: null,
 };
 
 const cartReducer = createReducer(initialState, (builder) => {
@@ -11,10 +12,8 @@ const cartReducer = createReducer(initialState, (builder) => {
       const newItem = action.payload;
       const existingItemIndex = state.items.findIndex(item => item.id === newItem.id);
       if (existingItemIndex !== -1) {
-        // If item already exists, increase its quantity
         state.items[existingItemIndex].quantity += 1;
       } else {
-        // If item doesn't exist, add it to the cart
         state.items.push(newItem);
       }
     })
@@ -31,6 +30,9 @@ const cartReducer = createReducer(initialState, (builder) => {
     .addCase(removeFromCart, (state, action) => {
       const index = action.payload;
       state.items.splice(index, 1);
+    })
+    .addCase(setCheckoutProduct, (state, action) => {
+      state.checkoutProduct = action.payload;
     });
 });
 

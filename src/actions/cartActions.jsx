@@ -23,3 +23,5 @@ export const removeFromCart = createAction('REMOVE_FROM_CART', (index) => {
     payload: index
   };
 });
+
+export const setCheckoutProduct = createAction('SET_CHECKOUT_PRODUCT');
