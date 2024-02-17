@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 
 const LoginForm = () => {
@@ -25,7 +26,7 @@ const LoginForm = () => {
       const data = await response.json();
 
       if (response.ok) {
-        console.log('Login successful');
+        toast.success('Login successful');
         navigate('/')
         localStorage.setItem('authToken', data.token);
         setUsername('');

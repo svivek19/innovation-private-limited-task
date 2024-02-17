@@ -4,13 +4,18 @@ import { removeFromCart, setCheckoutProduct } from '../actions/cartActions';
 import { Link } from 'react-router-dom';
 import ScrollToTopButton from '../Component/ScrollToTopButton';
 import { DecrementIcon, IncrementIcon } from '../Component/Icon';
+import { toast } from 'react-toastify';
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
 
-  const handleCheckout = (product) => {
-    dispatch(setCheckoutProduct(product));
+  const handleCheckout = () => {
+    if (cartItems.length === 0) {
+      toast.warning("Please add at least one product to the cart.");
+    } else {
+      dispatch(setCheckoutProduct(cartItems));
+    }
   };
 
   const increaseQuantity = (index) => {
