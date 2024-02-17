@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { removeFromCart } from '../actions/cartActions';
 import { Link } from 'react-router-dom';
 import ScrollToTopButton from '../Component/ScrollToTopButton';
+import { DecrementIcon, IncrementIcon } from '../Component/Icon';
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
@@ -57,7 +58,7 @@ const Cart = () => {
                     onClick={() => increaseQuantity(index)} disabled={cart.quantity >= 10}
                     className="bg-green-400 py-1 px-3 rounded-lg"
                   >
-                    +
+                   <IncrementIcon/>
                   </button>
                   <span className="bg-slate-200 px-4 py-1 mx-2 rounded-lg">
                     {cart.quantity}
@@ -66,7 +67,7 @@ const Cart = () => {
                     onClick={() => decreaseQuantity(index)} disabled={cart.quantity <= 1}
                     className="bg-red-400 py-1 px-3 rounded-lg"
                   >
-                    -
+                    <DecrementIcon/>
                   </button>
                 </div>
                 <div className="my-3 flex font-semibold text-lg">
@@ -77,7 +78,7 @@ const Cart = () => {
                   className="bg-[#222B38] font-semibold text-white px-5 py-1 text-center rounded-lg cursor-pointer hover:bg-[#2d394b]"
                 >
                   <span>
-                    DELETE
+                    DELETE 
                   </span>
                 </div>
               </div>

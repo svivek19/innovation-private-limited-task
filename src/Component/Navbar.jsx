@@ -32,7 +32,7 @@ const Navbar = () => {
           <Link to={'/cartdetails'} className="flex text-lg font-bold px-5 md:px-10 text-white">
             <CartIcon/> {`(${cartItems.length})`}
           </Link>
-          <div className="cursor-pointer" onClick={handleLogout}>
+          <div className="cursor-pointer text-4xl" onClick={handleLogout}>
             <LogoutIcon />
           </div>
         </div>

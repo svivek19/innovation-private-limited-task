@@ -1,15 +1,37 @@
 import React from 'react';
+import { IoCartOutline } from "react-icons/io5";
+import { IoMdLogOut } from "react-icons/io";
+import { FaArrowAltCircleUp } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
+import { FaMinus } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
+
+
 
 const LogoutIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92 92" width="30" height="30">
-    <path d="M60 60.7V79c0 2.2-1.6 4-3.8 4H4c-2.2 0-4-1.8-4-4V13c0-2.2 1.8-4 4-4h52.2c2.2 0 3.8 1.8 3.8 4v18.3c0 2.2-1.8 4-4 4s-4-1.8-4-4V17H8v58h44V60.7c0-2.2 1.8-4 4-4s4 1.8 4 4zM90.8 43 75.2 27.2c-1.6-1.6-4.1-1.6-5.7 0-1.6 1.6-1.6 4.1 0 5.7l8.9 9-48.5.1c-2.2 0-4 1.8-4 4s1.8 4 4 4l48.5-.1-8.9 9c-1.6 1.6-1.5 4.1 0 5.7.8.8 1.8 1.2 2.8 1.2 1 0 2.1-.4 2.8-1.2l15.7-15.8c1.6-1.7 1.6-4.2 0-5.8z" fill="#ffffff" />
-  </svg>
+  <IoMdLogOut className='text-white' />
 );
 
 const CartIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="40" height="40">
-    <path d="M75 71.09v-10c0-14.28 11.15-25.93 25-25.93s25 11.65 25 25.93v10h17.28A3.13 3.13 0 0 1 145.4 74l5.94 87.5a3.14 3.14 0 0 1-2.91 3.33H51.78a3.12 3.12 0 0 1-3.12-3.12v-.21L54.6 74a3.13 3.13 0 0 1 3.12-2.92Zm9.38 0h31.25v-10c0-9.19-7-16.56-15.63-16.56S84.38 51.9 84.38 61.09Zm-25.91 84.38h83.06l-5.08-75H63.56Z" fill="#ffffff" />
-  </svg>
+  <IoCartOutline className='text-white text-4xl' />
 );
 
-export { LogoutIcon, CartIcon };
+const ArrowUpIcon = () => (
+  <FaArrowAltCircleUp className='text-5xl' />
+);
+
+const IncrementIcon = () => (
+  <FaPlus />
+);
+
+const DecrementIcon = () => (
+  <FaMinus />
+);
+
+const StarIcon = () => (
+  <FaStar className='text-yellow-400' />
+)
+
+
+
+export { LogoutIcon, CartIcon, ArrowUpIcon, IncrementIcon, DecrementIcon, StarIcon };

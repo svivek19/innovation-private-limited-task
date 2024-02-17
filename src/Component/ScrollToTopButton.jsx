@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { ArrowUpIcon } from './Icon';
 
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -30,10 +31,10 @@ const ScrollToTopButton = () => {
     <div>
       {isVisible && (
         <button
-          className="fixed bottom-4 right-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full shadow-md"
+          className="fixed bottom-3 right-3 rounded-full shadow-md"
           onClick={scrollToTop}
         >
-          TOP
+          <ArrowUpIcon/>
         </button>
       )}
     </div>
