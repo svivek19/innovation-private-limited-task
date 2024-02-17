@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { CartIcon, LogoutIcon } from './Icon';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -27,11 +28,13 @@ const Navbar = () => {
         <Link to={'/'}>
           <h1 className='font-bold text-white text-2xl'>Shopify</h1>
         </Link>
-        <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-          <Link to={'/cartdetails'} className="bg-white text-black font-medium rounded-lg text-sm px-4 py-2 text-center">
-            Cart ({cartItems.length})
+        <div className="flex items-center">
+          <Link to={'/cartdetails'} className="flex text-lg font-bold px-5 md:px-10 text-white">
+            <CartIcon/> {`(${cartItems.length})`}
           </Link>
-          <button type="button" className="bg-red-500 hover:bg-red-600 focus:ring-4 text-white focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center" onClick={handleLogout}>Logout</button>
+          <div className="cursor-pointer" onClick={handleLogout}>
+            <LogoutIcon />
+          </div>
         </div>
       </div>
     </nav>
