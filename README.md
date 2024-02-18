@@ -16,7 +16,7 @@ The project is an e-commerce website that allows users to browse through a colle
 
 ## Demo
 
-soon!
+(https://innovation-private-limited-task.netlify.app/login)
 
 ## Getting Started
 
