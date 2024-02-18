@@ -27,4 +27,4 @@ Before running the project locally, make sure you have the following prerequisit
 1. Clone the repository:
 
 ```bash
-git clone 
+git clone https://github.com/svivek19/innovation-private-limited-task.git
