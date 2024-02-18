@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SearchBar from '../Component/SearchBar';
 import Card from '../Component/Card';
-import { ColorRing, Oval } from 'react-loader-spinner';
+import { Oval } from 'react-loader-spinner';
 import ScrollToTopButton from '../Component/ScrollToTopButton';
 
 const Home = () => {

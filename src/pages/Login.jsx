@@ -26,7 +26,24 @@ const LoginForm = () => {
       const data = await response.json();
 
       if (response.ok) {
-        toast.success('Login successful');
+
+        toast.success('Login successful', {
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          style: {
+            margin: '10px',
+            padding: '4px',
+            fontSize: '14px',
+            fontWeight: 'bold',
+            color: '#222B38',
+            borderRadius: '10px'
+          }
+        });
+
         navigate('/')
         localStorage.setItem('authToken', data.token);
         setUsername('');
@@ -76,7 +93,7 @@ const LoginForm = () => {
           </div>
 
           <div className="flex items-center justify-between mt-4">
-          <button className="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-slate-900 rounded-lg hover:bg-slate-700" onClick={handleHelpClick}>
+            <button className="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-slate-900 rounded-lg hover:bg-slate-700" onClick={handleHelpClick}>
               Help
             </button>
 

@@ -29,11 +29,24 @@ export default function CheckoutForm() {
     });
 
     const SuccessAlert = () => {
-        toast.success(
-            <h1 className="text-black font-semibold">
-                Your order has been placed 😀
-            </h1>
-        );
+
+        toast.success('Your order has been placed 😀', {
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            style: {
+                margin: '10px',
+                padding: '4px',
+                fontSize: '14px',
+                fontWeight: 'bold',
+                color: '#222B38',
+                borderRadius: '10px'
+            }
+        });
+
         setTimeout(() => {
             navigate("/");
         }, 3000);
@@ -64,7 +77,22 @@ export default function CheckoutForm() {
 
     const handleButtonClick = () => {
         if (!cartItems || cartItems.length === 0) {
-            toast.info('Please add at least one product');
+            toast.info('Please add at least one product', {
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    margin: '10px',
+                    padding: '4px',
+                    fontSize: '14px',
+                    fontWeight: 'bold',
+                    color: '#222B38',
+                    borderRadius: '10px'
+                }
+            });
         } else if (validateForm()) {
             setButtonClicked(true);
         }

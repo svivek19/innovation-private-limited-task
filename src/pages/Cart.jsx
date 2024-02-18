@@ -13,12 +13,27 @@ const Cart = () => {
 
   const handleCheckout = () => {
     if (cartItems.length === 0) {
-      toast.warning("Please add at least one product to the cart.");
+      toast.warning("Please add at least one product to the cart.", {
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        style: {
+          margin: '10px',
+          padding: '4px',
+          fontSize: '14px',
+          fontWeight: 'bold',
+          color: '#222B38',
+          borderRadius: '10px'
+        }
+      });
     } else {
       navigate('/checkout')
     }
   };
-  
+
 
   const increaseQuantity = (index) => {
     dispatch({ type: 'INCREASE_QUANTITY', payload: index });

@@ -12,7 +12,6 @@ const Card = ({ product }) => {
         dispatch(addToCart(product));
 
         toast.success('Product added to cart!', {
-            position: "top-center",
             autoClose: 1000,
             hideProgressBar: true,
             closeOnClick: true,
@@ -20,8 +19,7 @@ const Card = ({ product }) => {
             draggable: true,
             progress: undefined,
             style: {
-                margin:'auto',
-                width: 'fit-content',
+                margin:'10px',
                 padding: '4px',
                 fontSize: '14px',
                 fontWeight: 'bold',
