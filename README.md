@@ -1,30 +1,58 @@
-# eCommerce Website with React, Tailwind CSS, and Public Product API
+# E-commerce Website
 
-This project is an eCommerce website built using React and Tailwind CSS. It utilizes a public product API to fetch product data and includes features such as product search, filtering by price, cart functionality, and a checkout page. Additionally, the website includes user authentication using a public API.
+An e-commerce website built using React, Redux Toolkit, Tailwind CSS, Toastify, SweetAlert, and a public product API. The main features include product search, filtering by price, a shopping cart, and a checkout page. Additionally, it utilizes a public API for user login functionality.
 
 ## About the Project
 
-The eCommerce website is designed to provide users with a seamless shopping experience. It allows users to browse through a variety of products, search for specific items, filter products based on price, add items to their cart, and complete the checkout process. User authentication is implemented to allow users to log in and access their account information.
+The project is an e-commerce website that allows users to browse through a collection of products, search for specific items, filter products based on price, add them to a shopping cart, and proceed to checkout. It also features user authentication using a public API.
 
 ## Features
 
-- Browse products from a public API
-- Search functionality to find specific products
-- Filter products based on price range
-- Add items to the cart
-- Checkout page to complete the purchase
-- User authentication for login and account access
+- Product search
+- Price filtering
+- Shopping cart
+- Checkout page
+- User authentication (using a public API)
 
-## Prerequisites
+## Demo
 
-Before running the project locally, make sure you have the following prerequisites installed:
+soon!
 
-- Node.js
-- npm or yarn
+## Getting Started
 
-## Installation
+Follow these instructions to get the project up and running on your local machine.
+
+### Prerequisites
+
+- Node.js and npm installed on your machine
+
+### Installation
 
 1. Clone the repository:
 
-```bash
-git clone https://github.com/svivek19/innovation-private-limited-task.git
+   ```sh
+   git clone 
+2. Navigate to the project directory:
+ cd e-commerce-website
+
+3. Install dependencies:
+npm install
+
+Usage
+Once you have installed the dependencies, you can start the development server:
+~npm start
+This will run the application in development mode. Open http://localhost:3000 to view it in your browser.
+
+Contributing
+Contributions are welcome! If you'd like to contribute to the project, please follow these steps:
+
+1.Fork the repository
+2.Create a new branch (git checkout -b feature/your-feature)
+3.Make your changes
+4.Commit your changes (git commit -am 'Add some feature')
+5. Push to the branch (git push origin feature/your-feature)
+6. Create a new pull request
+
+
+Contact
+For any questions or inquiries, please feel free to contact me at svivek030503@gmail.com
