@@ -31,7 +31,7 @@ Follow these instructions to get the project up and running on your local machin
 1. Clone the repository:
 
    ```sh
-   git clone 
+   git clone https://github.com/svivek19/innovation-private-limited-task.git
 2. Navigate to the project directory:
  cd e-commerce-website
 
