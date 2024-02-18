@@ -68,7 +68,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="w-full mt-10 md:mt-28 max-w-sm mx-auto overflow-hidden rounded-lg shadow-md">
+    <div className="w-full mt-10 md:mt-28 max-w-sm mx-auto overflow-hidden bg-slate-50 rounded-lg shadow-xl">
       <div className="px-6 py-4">
         <div className="flex justify-center mx-auto">
           <img className="w-28 h-24" src="https://yshop.org/cdn/shop/t/4/assets/logo-image-file.png?v=73107786777602669321430073421" alt="logo" />
