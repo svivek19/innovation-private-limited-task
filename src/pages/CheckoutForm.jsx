@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 //Toast - Alert
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+import ScrollToTopButton from '../Component/ScrollToTopButton'
 
 export default function CheckoutForm() {
 
-    const checkoutProduct = useSelector((state) => state.cart.checkoutProduct);
+    const cartItems = useSelector((state) => state.cart.items);
 
     const navigate = useNavigate();
 
@@ -61,10 +63,13 @@ export default function CheckoutForm() {
     };
 
     const handleButtonClick = () => {
-        if (validateForm()) {
+        if (!cartItems || cartItems.length === 0) {
+            toast.info('Please add at least one product');
+        } else if (validateForm()) {
             setButtonClicked(true);
         }
     };
+
 
     useEffect(() => {
         if (buttonClicked) {
@@ -79,14 +84,15 @@ export default function CheckoutForm() {
     });
 
     const subTotal = () => {
-        const subtotal = checkoutProduct?.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+        const subtotal = cartItems?.reduce((acc, item) => acc + (item.price * item.quantity), 0);
         return isNaN(subtotal) ? '0' : subtotal.toFixed(0);
     }
 
     const calculateTotalPrice = () => {
-        const totalPrice = checkoutProduct?.reduce((acc, item) => acc + (item.price * item.quantity + 6 + 10), 0);
+        const totalPrice = cartItems?.reduce((acc, item) => acc + (item.price * item.quantity + 6 + 10), 0);
         return isNaN(totalPrice) ? '0' : totalPrice.toFixed(0);
     };
+
 
     return (
         <div className="mt-32 mx-5">
@@ -97,14 +103,14 @@ export default function CheckoutForm() {
                             <h2 className="mb-8 font-bold text-xl md:text-center">
                                 Order Summery
                             </h2>
-                            {checkoutProduct && checkoutProduct.length > 0 ? (
-                                checkoutProduct.map((cart) => (
+                            {cartItems && cartItems.length > 0 ? (
+                                cartItems.map((cart) => (
                                     <div key={cart.id} className="flex">
                                         <span>
                                             <img
                                                 src={cart.images[(0)]}
                                                 alt="product-images"
-                                                className="w-24 rounded-lg mx-5 mb-5 md:mx-auto"
+                                                className="w-24 rounded-lg mb-5 md:mx-auto"
                                             />
                                         </span>
                                         <div className="mx-3">
@@ -113,24 +119,24 @@ export default function CheckoutForm() {
                                             </div>
                                             <div className="text-red-500 font-medium my-2">
                                                 Price:{" "}
-                                                <span className="text-black mx-1 font-normal">
+                                                <span className="text-black font-normal">
                                                     ${cart.price}
                                                 </span>
-                                            </div>
-                                            <div className="text-gray-600">
-                                                Quantity: {cart.quantity}
+                                                <span className="text-gray-600 mx-4">
+                                                    Quantity: {cart.quantity}
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
                                 ))
                             ) : (
-                                <div>No items in the cart</div>
+                                <div className="text-xl font-semibold mb-10 md:mb-0">No items in the cart</div>
                             )}
 
                         </div>
                         <div>
                             <h2 className="mb-8 font-bold text-lg md:text-xl text-start">
-                                ITEMS{`(${checkoutProduct?.length})`}
+                                ITEMS{`(${cartItems && cartItems.length > 0 ? cartItems.length : 0})`}
                             </h2>
                             <div className=" font-semibold ">
                                 <h3>Subtotal:  ${subTotal()}</h3>
@@ -443,7 +449,7 @@ export default function CheckoutForm() {
                             <button onClick={handleButtonClick} type="button">
                                 <Link
                                     to="#"
-                                    className="relative my-2 inline-flex items-center justify-center py-2 px-5 overflow-hidden font-semibold text-white hover:bg-slate-800 transition-all duration-150 ease-in-out rounded  bg-slate-900 group"
+                                    className="relative my-2 inline-flex items-center justify-center py-2 px-5 overflow-hidden font-semibold text-white hover:bg-[#283342] transition-all duration-150 ease-in-out rounded  bg-[#222B38] group"
                                 >
                                     <span>
                                         Proceed To Pay{" "}
@@ -455,6 +461,7 @@ export default function CheckoutForm() {
                     </div>
                 </form>
             </div>
+            <ScrollToTopButton />
         </div>
     );
 }

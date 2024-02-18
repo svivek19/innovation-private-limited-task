@@ -24,4 +24,3 @@ export const removeFromCart = createAction('REMOVE_FROM_CART', (index) => {
   };
 });
 
-export const setCheckoutProduct = createAction('SET_CHECKOUT_PRODUCT');

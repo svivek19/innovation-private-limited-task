@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeFromCart, setCheckoutProduct } from '../actions/cartActions';
-import { Link } from 'react-router-dom';
+import { removeFromCart } from '../actions/cartActions';
+import { Link, useNavigate } from 'react-router-dom';
 import ScrollToTopButton from '../Component/ScrollToTopButton';
 import { DecrementIcon, IncrementIcon } from '../Component/Icon';
 import { toast } from 'react-toastify';
@@ -9,14 +9,16 @@ import { toast } from 'react-toastify';
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const handleCheckout = () => {
     if (cartItems.length === 0) {
       toast.warning("Please add at least one product to the cart.");
     } else {
-      dispatch(setCheckoutProduct(cartItems));
+      navigate('/checkout')
     }
   };
+  
 
   const increaseQuantity = (index) => {
     dispatch({ type: 'INCREASE_QUANTITY', payload: index });
@@ -74,9 +76,9 @@ const Cart = () => {
           <div className="cartText mb-2 text-xl text-[#222B38] font-semibold">GST: $6</div>
           <div className="cartText mb-2 text-xl text-[#222B38] font-semibold">Shipping Charge: $10</div>
           <div className="cartText text-xl text-[#222B38] font-semibold">Total Price: ${calculateTotalPrice()}</div>
-          <Link onClick={() => handleCheckout(cartItems)} to="/checkout" className="w-full mt-4 inline-flex items-center justify-center py-2 overflow-hidden font-semibold text-white uppercase hover:bg-[#2f3b4d] transition-all duration-150 ease-in-out rounded-lg  bg-[#222B38] group">
+          <button onClick={() => handleCheckout(cartItems)} className="w-full mt-4 inline-flex items-center justify-center py-2 overflow-hidden font-semibold text-white uppercase hover:bg-[#2f3b4d] transition-all duration-150 ease-in-out rounded-lg  bg-[#222B38] group">
             Check Out
-          </Link>
+          </button>
           <div className="mt-3 mb-5 text-md text-center">
             <span>
               Otherwise,{" "}
