@@ -24,3 +24,5 @@ export const removeFromCart = createAction('REMOVE_FROM_CART', (index) => {
   };
 });
 
+export const resetCart = createAction('RESET_CART');
+

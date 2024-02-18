@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import {resetCart} from '../actions/cartActions'
 //Toast - Alert
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import ScrollToTopButton from '../Component/ScrollToTopButton'
+import ScrollToTopButton from '../Component/ScrollToTopButton';
 
 export default function CheckoutForm() {
 
     const cartItems = useSelector((state) => state.cart.items);
 
     const navigate = useNavigate();
+    const dispatch = useDispatch()
 
     const [buttonClicked, setButtonClicked] = useState(false);
 
@@ -48,6 +50,7 @@ export default function CheckoutForm() {
         });
 
         setTimeout(() => {
+            dispatch(resetCart());
             navigate("/");
         }, 3000);
     };

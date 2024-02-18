@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { addToCart, increaseQuantity, decreaseQuantity, removeFromCart } from '../actions/cartActions';
+import { addToCart, increaseQuantity, decreaseQuantity, removeFromCart, resetCart } from '../actions/cartActions';
 
 const initialState = {
   items: [],
@@ -30,7 +30,10 @@ const cartReducer = createReducer(initialState, (builder) => {
     .addCase(removeFromCart, (state, action) => {
       const index = action.payload;
       state.items.splice(index, 1);
-    });
+    })
+    .addCase(resetCart, () => {
+      return initialState;
+  });
     
 });
 
